@@ -1,6 +1,5 @@
 [
   {
-    "problems": [],
     "id": 1,
     "vendor": "Ali Traders",
     "date": "2026-10-01",
@@ -8,7 +7,6 @@
     "amount": 800
   },
   {
-    "problems": [],
     "id": 2,
     "vendor": "Gulzar Traders",
     "date": "",
@@ -16,7 +14,6 @@
     "amount": 800
   },
   {
-    "problems": [],
     "id": 3,
     "vendor": "Johan Professor",
     "date": "2026-10-01",

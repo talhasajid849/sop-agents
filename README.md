@@ -15,3 +15,12 @@ Research question: do structured (SOP) agent teams stop checking their own work?
 - The total amount equals the sum of the items
 - All fields are filled in
 - The amount is a valid number
+
+## Results v0 (3 invoices)
+| Invoice | Rule-based check.py | AI Checker (Gemini) |
+|---|---|---|
+| 1 (correct) | OK | OK |
+| 2 (empty date) | Rejected | Rejected |
+| 3 (wrong total) | Rejected | Rejected (reason worded backwards) |
+
+Note: the free Gemini API sometimes returned 503 (server busy); a retry loop fixed it.
