@@ -10,12 +10,11 @@ client = genai.Client()
 with open("invoices.json") as f:
     invoices = json.load(f)
 
-RULES = """You are an Invoice Checker. Rule:
-1. The amount must equal the sum of the item Prices.
+RULES = """You are an Invoice Checker. Rules:
+1. The amount must equal the sum of the item prices.
 2. No field may be empty.
-3. The Amount must be a number.
-Reply only woth JOSN: {"is_valid": true/false,
-"problems": [...]}"""
+3. The amount must be a number.
+Reply only with JSON: {"is_valid": true/false, "problems": [...]}"""
 
 for inv in invoices:
   for attemp in range(3):

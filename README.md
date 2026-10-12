@@ -16,11 +16,14 @@ Research question: do structured (SOP) agent teams stop checking their own work?
 - All fields are filled in
 - The amount is a valid number
 
-## Results v0 (3 invoices)
-| Invoice | Rule-based check.py | AI Checker (Gemini) |
-|---|---|---|
-| 1 (correct) | OK | OK |
-| 2 (empty date) | Rejected | Rejected |
-| 3 (wrong total) | Rejected | Rejected (reason worded backwards) |
+## Results v0 (3 invoices, corrected prompt)
+| Invoice | Rule-based check.py | AI Checker (Gemini) | AI Checker (Claude) |
+|---|---|---|---|
+| 1 (correct) | OK | OK | OK |
+| 2 (empty date) | Rejected | Rejected | Rejected |
+| 3 (wrong total) | Rejected | Rejected | Rejected (showed the sum) |
 
-Note: the free Gemini API sometimes returned 503 (server busy); a retry loop fixed it.
+Notes:
+- All verdicts agree. In an earlier run (prompt had typos), Gemini worded invoice 3's reason backwards. Same verdict, wrong explanation.
+- Format: Gemini wrapped only invoice 3 in ```json fences; Claude wrapped all three, despite "Reply only with JSON".
+- Gemini free API sometimes returns 503 (server busy); a retry loop handles it.
