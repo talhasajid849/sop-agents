@@ -27,3 +27,5 @@ Notes:
 - All verdicts agree. In an earlier run (prompt had typos), Gemini worded invoice 3's reason backwards. Same verdict, wrong explanation.
 - Format: Gemini wrapped only invoice 3 in ```json fences; Claude wrapped all three, despite "Reply only with JSON".
 - Gemini free API sometimes returns 503 (server busy); a retry loop handles it.
+
+| 4 (10 items, off by 1) | Rejected | Rejected (gave both numbers) | Rejected (found difference of 1) |
