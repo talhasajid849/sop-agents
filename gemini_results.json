@@ -1,0 +1,22 @@
+[
+  {
+    "invoice_id": 1,
+    "model": "gemini-3.8-flash",
+    "answer": "{\"is_valid\": true, \"problems\": []}"
+  },
+  {
+    "invoice_id": 2,
+    "model": "gemini-3.8-flash",
+    "answer": "{\"is_valid\": false, \"problems\": [\"The date field is empty.\"]}"
+  },
+  {
+    "invoice_id": 3,
+    "model": "gemini-3.8-flash",
+    "answer": "```json\n{\n  \"is_valid\": false,\n  \"problems\": [\n    \"The amount does not equal the sum of the item prices (expected 1000, got 8000).\"\n  ]\n}\n```"
+  },
+  {
+    "invoice_id": 4,
+    "model": "gemini-3.8-flash",
+    "answer": "{\"is_valid\": false, \"problems\": [\"The amount does not equal the sum of the item prices (expected 10532, got 10531).\"]}"
+  }
+]

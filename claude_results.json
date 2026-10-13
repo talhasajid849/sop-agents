@@ -1,0 +1,22 @@
+[
+  {
+    "invoice_id": 1,
+    "model": "claude-opus-5-5",
+    "answer": "```json\n{\"is_valid\": true, \"problems\": []}\n```"
+  },
+  {
+    "invoice_id": 2,
+    "model": "claude-opus-5-5",
+    "answer": "```json\n{\"is_valid\": false, \"problems\": [\"Field 'date' is empty\"]}\n```"
+  },
+  {
+    "invoice_id": 3,
+    "model": "claude-opus-5-5",
+    "answer": "{\"is_valid\": false, \"problems\": [\"Amount (8000) does not equal the sum of item prices (500 + 200 + 300 = 1000).\"]}"
+  },
+  {
+    "invoice_id": 4,
+    "model": "claude-opus-5-5",
+    "answer": "{\"is_valid\": false, \"problems\": [\"Amount (10531) does not equal the sum of item prices (10532); difference of 1.\"]}"
+  }
+]

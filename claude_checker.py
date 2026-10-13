@@ -14,6 +14,7 @@ RULES = """You are an Invoice Checker. Rules:
 3. The amount must be a number.
 Reply only with JSON: {"is_valid": true/false, "problems": [...]}"""
 
+results = []
 for inv in invoices:
   response = client.messages.create(
     model="claude-opus-5-5",
@@ -22,3 +23,8 @@ for inv in invoices:
 )
   text = next(b.text for b in response.content if b.type == "text")
   print(f"Invoice {inv['id']}: {text}")
+  results.append({"invoice_id": inv["id"], "model": "claude-opus-5-5", "answer": text})
+
+
+with open("claude_results.json", "w") as f:
+    json.dump(results, f, indent=2)

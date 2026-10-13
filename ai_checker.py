@@ -16,6 +16,7 @@ RULES = """You are an Invoice Checker. Rules:
 3. The amount must be a number.
 Reply only with JSON: {"is_valid": true/false, "problems": [...]}"""
 
+results = []
 for inv in invoices:
   for attemp in range(3):
     try:
@@ -24,7 +25,12 @@ for inv in invoices:
             contents=RULES + "\n\nInvoices:\n" + json.dumps(inv),
         )
         print(f"Invoice {inv["id"]}: {reponse.text}")
+        results.append({"invoice_id": inv["id"], "model": "gemini-3.8-flash", "answer": reponse.text})
         break
     except errors.ServerError:
         print(f"Invoice {inv['id']}: server busy, 10 sec baad dobara...")
         time.sleep(10)
+
+
+with open("gemini_results.json", "w") as f:
+    json.dump(results, f, indent=2)
