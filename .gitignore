@@ -1,2 +1,6 @@
-.env
 .venv/
+.venv-1/
+.env
+__pycache__/
+*.egg-info/
+traces/*.jsonl
