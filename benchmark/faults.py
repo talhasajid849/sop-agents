@@ -46,6 +46,10 @@ def inject_missing_fields(inv: Invoice, fields: str) -> Invoice:
     return inv.model_copy(update={fields: None})
 
 
+def inject_total_mismatch(inv: Invoice, percent: int) -> Invoice:
+    """Plant one mistake: make the total wrong by the percent"""
+    wrong = money(inv.total * (100 + percent) / 100)
+    return inv.model_copy(update={"total": wrong})
 
 if __name__ == "__main__":
     good = Invoice(
@@ -65,8 +69,12 @@ if __name__ == "__main__":
     )
     print("good invoice:", find_violations(good))
 
-    bad = good.model_copy(update={"total": Decimal("10999.00")})
+    bad = inject_off_by_one(good)
+    print("bad total:   ", bad.total)
     print("bad invoice: ", find_violations(bad))
 
     missing = inject_missing_fields(good, "invoice_date")
     print("missing date:", find_violations(missing))
+
+    big = inject_total_mismatch(good, 30)
+    print("big mitchmatch:", big.total, find_violations(big))
