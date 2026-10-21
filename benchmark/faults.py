@@ -51,6 +51,20 @@ def inject_total_mismatch(inv: Invoice, percent: int) -> Invoice:
     wrong = money(inv.total * (100 + percent) / 100)
     return inv.model_copy(update={"total": wrong})
 
+
+def inject_line_item_error(inv: Invoice, index: int, extra: str) -> Invoice:
+    """Plant one mistake: one line amount is wrong, but the total still add up."""
+    items = list(inv.line_items)
+    items[index] = items[index].model_copy(update={"amount": items[index].amount + Decimal(extra)})
+    subtotal = sum(line.amount for line in items)
+    tax = money(subtotal * inv.tax_rate_percent / 100)
+    return inv.model_copy(update={
+        "line_items": items,
+        "subtotal": subtotal,
+        "tax": tax,
+        "total": subtotal + tax,
+    })
+
 if __name__ == "__main__":
     good = Invoice(
         invoice_number="INV-001",
@@ -78,3 +92,6 @@ if __name__ == "__main__":
 
     big = inject_total_mismatch(good, 30)
     print("big mitchmatch:", big.total, find_violations(big))
+
+    line_bad = inject_line_item_error(good, 0, "500.00")
+    print("line error: ", find_violations(line_bad))
